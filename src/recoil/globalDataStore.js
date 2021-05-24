@@ -1,10 +1,10 @@
-import { useWithData } from './dataHook'
+import { useWithData } from './userAtom'
 import { useEffect } from 'react'
 
 export default () => {
-  const { setUser } = useWithData()
+  const { fetchUserData } = useWithData()
   useEffect(() => {
-    setUser()
+    fetchUserData()
   }, [])
   return <></>
 }

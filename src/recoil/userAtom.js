@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState } from 'recoil'
+import { atom, useRecoilState } from 'recoil'
 
 const globalReadableUserState = atom({
   key: 'user',
@@ -18,13 +18,21 @@ const getUserDataApi = () => {
   })
 }
 
-export function useUserData () {
+export const useWithData = () => {
   const [user, setGlobalUserData] = useRecoilState(globalReadableUserState)
-  return [
-    user,
-    async () => {
-      let data = await getUserDataApi()
-      setGlobalUserData(data)
-    }
-  ]
+
+  const editUser = data => {
+    //axios user edit hit
+    setUserData()
+  }
+  const setUserData = async () => {
+    let data = await getUserDataApi()
+    setGlobalUserData(data)
+  }
+
+  return {
+    user, //user data to use at all components
+    editUser,
+    fetchUserData: setUserData // to set global atom once app load
+  }
 }
