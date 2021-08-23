@@ -10,11 +10,11 @@ const getUserDataApi = () => {
     setTimeout(() => {
       return resolve({
         name: 'Hello',
-        mobile: 9847654677,
+        phone: 9847654677,
         email: 'hello@gmail.com',
         role: 'Smart'
       })
-    }, 5000)
+    }, 0)
   })
 }
 
