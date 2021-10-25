@@ -1,10 +1,11 @@
-import React, { useReducer } from 'react'
-import Data from './data'
-
+import React, { useReducer, useState } from 'react'
+import Data from '@components/data'
+import Input from 'lib/components/CustomInputBox'
+// import { Default_Label } from 'constants'
 export const MyContext = React.createContext()
+// console.log(Default_Label)
 const initialval = { isLoggedIn: false, user: {} }
 const reducer = (state, action) => {
-  console.log('heeerrerer')
   switch (action.type) {
     case 'LOGGED_IN':
       return { ...state, isLoggedIn: action.payload.isLoggedIn }
@@ -16,11 +17,11 @@ const reducer = (state, action) => {
 }
 export default function ReactStoreapp ({ children }) {
   const [state, dispatch] = useReducer(reducer, initialval)
-  console.log(state)
+  const [val, setVal] = useState('')
   return (
     <MyContext.Provider value={{ state, dispatch }}>
       {/* <Area /> */}
-
+      <Input value={val} onChange={setVal} />
       <div className='App useContext'>
         {state.isLoggedIn ? 'kyaaa' : 'bhupp'}
         <Data state={state} dispatch={dispatch} />

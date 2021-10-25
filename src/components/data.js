@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
-import One from './onMore'
-import Two from './TwoMore'
+import One from '../onMore'
+import Two from '../TwoMore'
 
 export default function Data ({ state, dispatch }) {
   const { user } = state
